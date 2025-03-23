@@ -34,3 +34,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Install
+Step 1: https://clerk.com/
+Step 2: https://wxflows.ibm.stepzen.com/docs/node-cli/build-tools
+Step 2.2: wxflows login -e xxx --adminkey xxx
+Step 3: npm install @clerk/nextjs
+Step 4: set up convex (https://www.convex.dev/) npm install convex
+Step 4.5: set up convex auth clerk (https://docs.convex.dev/auth/clerk)
+Step 5: create folder convex (npx convex dev)
+Step 6 setup authen (https://dashboard.clerk.com/apps/app_2ui4feI8O1d2rwlUlJGUlBeakOZ/instances/ins_2ui4fkPJDiNKPE9xiV5fhjvqlWo/jwt-templates)
+Step 7: click Config => jwt-template => convex => save => copy link issue
+Step 8: create file auth.config.ts in convex folder
+Step 9: https://dashboard.convex.dev/t/dvphuc96/ai-agent-nextjs-be79f/capable-crab-318/settings/environment-variables
+Step 10: npm install @clerk/clerk-react
+Step 11: npx shadcn@latest init
+Step 12: npx shadcn@latest add button
+Step 13: setup multi-factor: (https://dashboard.clerk.com/apps/app_2ui4feI8O1d2rwlUlJGUlBeakOZ/instances/ins_2ui4fkPJDiNKPE9xiV5fhjvqlWo/user-authentication/multi-factor)
+Step 14: npm i radix-ui, npm i @radix-ui/react-icons
+
