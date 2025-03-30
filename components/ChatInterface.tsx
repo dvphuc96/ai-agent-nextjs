@@ -55,47 +55,48 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
 
     // Stream response from the AI
     try {
-        const requestBody: ChatRequestBody = {
-            messages: messages.map((msg) => ({
-                role: msg.role,
-                content: msg.content,
-            })),
-            newMessage: trimedInput,
-            chatId,
-        }
+      const requestBody: ChatRequestBody = {
+        messages: messages.map((msg) => ({
+          role: msg.role,
+          content: msg.content,
+        })),
+        newMessage: trimedInput,
+        chatId,
+      };
 
-        // Initialize SSE connection
-        const response = await fetch("/api/chat/stream", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(requestBody),
-        });
+      // Initialize SSE connection
+      const response = await fetch("/api/chat/stream", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-        if (!response.ok) throw new Error(await response.text());
-        if (!response.body) throw new Error("No response body");
+      if (!response.ok) throw new Error(await response.text());
+      if (!response.body) throw new Error("No response body");
 
-        // Handle SSE stream
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-
-        
+      // Handle SSE stream
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
     } catch (error) {
-        console.error("Error sending message:", error);
-        setMessages((prev) => {
-            return prev.filter((msg) => msg._id !== optimisticUserMessage._id);
-        })
-        setStreamedResponse("error");
-        setIsLoading(false);
+      // Handle any errors during streaming
+      console.error("Error sending message:", error);
+      // Remove the optimistic user message if there was an error
+      setMessages((prev) => {
+        return prev.filter((msg) => msg._id !== optimisticUserMessage._id);
+      });
+      setStreamedResponse("error");
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
-    
   };
   return (
     <main className="flex flex-col h-[calc(100vh-theme(spacing.14))]">
       <section className="flex-1">
         <div>
-            <div ref={messageEndRef} />
+          <div ref={messageEndRef} />
         </div>
       </section>
       <footer className="bg-white border-t p-4">

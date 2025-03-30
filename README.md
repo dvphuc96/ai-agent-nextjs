@@ -52,4 +52,4 @@ Step 11: npx shadcn@latest init
 Step 12: npx shadcn@latest add button
 Step 13: setup multi-factor: (https://dashboard.clerk.com/apps/app_2ui4feI8O1d2rwlUlJGUlBeakOZ/instances/ins_2ui4fkPJDiNKPE9xiV5fhjvqlWo/user-authentication/multi-factor)
 Step 14: npm i radix-ui, npm i @radix-ui/react-icons
-
+Step 15: npm i langchain @langchain/core @langchain/anthropic @langchain/langgraph
